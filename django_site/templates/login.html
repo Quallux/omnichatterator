@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/static/favicon.png">
+        <link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css">
+        <title>Omnichatterator</title>
+        
+    </head>
+    <body>
+
+        <div class="login-container">
+            <div class="center"><img class="omnichatterator-logo" src="{% static 'images/logo.svg' %}" alt="Omnichatterator"/></div>
+            <div class="center omnichatterator-text">Omnichatterator</div>
+            <div id="log-in-with-text" class="center login-text margin-top-5vh">Log in with:</div>
+            <div id="logging-in-with-text" class="center login-text hidden margin-top-5vh">Logging in with:</div>
+            <div class="center">
+
+                <div id="messenger-selected" class="hidden">
+                    <div id="messenger-selected-logo" class="platform-box">
+                        <img class="platform-logo" src="{% static 'images/messenger.svg' %}" alt="messenger">
+                    </div>
+                    <div id="messenger-description">
+                        Visit <a id="messenger-link" href="" target="_blank">THIS PAGE</a> and enter following code:
+                    </div>
+                    <div class="flex-container">
+                        <div id="messenger-code"></div>
+                        <div>
+                            <button id="copy-messenger-code-button" class="copy-size" type="button" onclick="copyMessengerCodeToClipboard()">
+                                <div class="copy-image">
+                                    <img class="copy-size" src="{% static 'images/copy1.svg' %}">
+                                    <img class="copy-size img-top" src="{% static 'images/copy2.svg' %}">
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative-position">
+                        <div id="copied-popup" class="hidden">copied!</div>
+                    </div>
+                    <div class="margin-top-30px"><a class="back-link" href="/login/">go back</a></div>
+                </div>
+
+                <div id="twitter-selected-logo" class="platform-box hidden">
+                    <img class="platform-logo" src="{% static 'images/twitter.svg' %}" alt="twitter">
+                </div>
+
+                <div id="gmail-selected-logo" class="platform-box hidden">
+                    <img class="platform-logo" src="{% static 'images/gmail.svg' %}" alt="gmail">
+                </div>
+
+                <form id="select-twitter-form">
+                    <button id="twitter-button" class="platform-box" type="button">
+                        <div class="absolute">
+                            <img id="twitter-done" class="done-icon" src="{% static 'images/done-icon.svg' %}" alt="already logged in">
+                            <img class="platform-logo" src="{% static 'images/twitter.svg' %}" alt="twitter">
+                        </div>
+                    </button>
+                    <button id="messenger-button" class="platform-box" type="button">
+                        <div class="absolute">
+                            <img id="messenger-done" class="done-icon" src="{% static 'images/done-icon.svg' %}" alt="already logged in">
+                            <img class="platform-logo" src="{% static 'images/messenger.svg' %}" alt="messenger">
+                        </div>
+                    </button>
+                    <button id="gmail-button" class="platform-box" type="button">
+                        <div class="absolute">
+                            <img id="gmail-done" class="done-icon" src="{% static 'images/done-icon.svg' %}" alt="already logged in">
+                            <img class="platform-logo" src="{% static 'images/gmail.svg' %}" alt="e-mail">
+                        </div>
+                    </button>
+                    <button id="instagram-button" class="platform-box" type="button">
+                        <img class="platform-logo unimplemented" src="{% static 'images/instagram.svg' %}" alt="instagram">
+                    </button>
+                    <button id="linkedIn-button" class="platform-box" type="button">
+                        <img class="platform-logo unimplemented" src="{% static 'images/linkedIn.svg' %}" alt="linkedIn">
+                    </button>
+                </form>
+            </div>
+
+            {% if error %}
+                <div id="error" class="center error">{{ error }}</div>
+            {% endif %}
+
+            <div id="twitter_url" class="center"></div>
+            <form id="login-form" class="hidden" method="post">
+                {% csrf_token %}
+                <div class="center">
+                    <input id="auth_id" name="auth_id" type="text" value="" hidden>
+                    <input id="oauth" name="oauth" type="text" placeholder="Enter authorization PIN">
+                </div>
+                <div class="center">
+                    <button id="log-in-button" type="submit" value="letsgoo">Log in</button>
+                    <div class="margin-top-10px"><a class="back-link" href="/login/">go back</a></div>
+                </div>
+            </form>
+
+        </div>
+
+    </body>
+
+<script type="application/javascript" src="{% static 'js/login.js' %}"></script>
+
+</html>

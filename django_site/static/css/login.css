@@ -1,0 +1,267 @@
+body {
+    margin: 0;
+    background-color: #395B64;
+    min-width: 400px;
+}
+
+.platform-logo {
+    width: 70px;
+    height: 70px;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+.done-icon {
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+}
+
+.unimplemented{
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    cursor: auto;
+
+}
+
+.login-container {
+    width: 30vw;
+    height: 100vh;
+    min-height: 700px;
+    min-width: 350px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #2C3333;
+    font-family: Arial, sans-serif;
+    color: #395B64;
+}
+
+.center {
+    text-align: center;
+}
+
+.omnichatterator-text {
+    font-size: 40px;
+    font-weight: bolder;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    margin-top: 10px;
+}
+
+.margin-top-20vh {
+    margin-top: 20vh;
+}
+
+.margin-top-5vh {
+    margin-top: 5vh;
+}
+
+.login-text {
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 30px;
+}
+
+.omnichatterator-logo {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    height: 130px;
+    width: 130px;
+    margin-top: 10vh;
+}
+
+.platform-box {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: white;
+    border-radius: 80px;
+}
+
+.clickable {
+    transition: transform .3s;
+}
+
+.clickable:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+button {
+    border: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    margin-top: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+    font-weight: bold;
+    color: #c00f0f;
+    font-size: 20px;
+}
+
+input {
+    width: 250px;
+    height: 35px;
+    text-align: center;
+    font-size: 20px;
+}
+
+#log-in-button {
+    height: 45px;
+    width: 150px;
+    border-radius: 100px;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: #395B64;
+    color: #E7F6F2;
+    margin-top: 30px;
+}
+
+#log-in-button:hover {
+    background-color: #567980;
+    cursor: pointer;
+    color: #2C3333;
+}
+
+#twitter_url{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#twitter_url a {
+    color: greenyellow;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#twitter_url a:hover {
+    cursor: pointer;
+}
+
+#messenger-login-info-box {
+    background: orange;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+    box-shadow: 0 0 0 2000px rgba(0, 0, 0, .3);
+}
+
+.copy-size {
+    width: 30px;
+    height: 30px;
+}
+
+.copy-image {
+    margin-left: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.copy-image .img-top {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.copy-image:hover .img-top {
+    display: inline;
+}
+
+.copy-image:hover {
+    cursor: pointer;
+}
+
+
+#copy-messenger-code-button {
+    background-color: #2C3333;
+}
+
+.dark-background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #c00f0f;
+}
+
+.back-link {
+    color: white;
+    font-size: 20px;
+}
+
+.margin-top-10px {
+    margin-top: 10px;
+}
+
+#messenger-description {
+    font-weight: normal;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    color: white;
+}
+
+#messenger-code {
+    font-weight: bolder;
+    font-size: 40px;
+    background: -webkit-linear-gradient(230deg, #FF6968, #FF6968, #A334FA, #0695FF, #0695FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#messenger-link {
+    color: #FF6968;
+    font-weight: bolder;
+}
+
+.flex-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#copied-popup {
+    font-weight: bolder;
+    font-size: 18px;
+    color: #FF6968;
+    position: relative;
+    border-radius: 5px;
+    transition: all 5s ease-in-out;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.relative-position {
+    position: relative;
+    height: 0;
+}
+
+.margin-top-30px {
+    margin-top: 30px;
+}
+
+.relative {
+    position: relative;
+}

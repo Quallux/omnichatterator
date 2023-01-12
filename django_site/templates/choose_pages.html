@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.png">
+    <link href="{% static 'css/msg_page_select.css' %}" rel="stylesheet" type="text/css">
+    <title>Omnichatterator</title>
+</head>
+
+<body>
+<div class="login-container">
+            <div class="center"><img id="logo" class="omnichatterator-logo" src="{% static 'images/logo.svg' %}" alt="Omnichatterator"/></div>
+            <div class="center omnichatterator-text" id="logotext">Omnichatterator</div>
+
+
+
+            <div class="center">
+                <div class="logged_user">
+                    <img src="{{ user_pic }}" class="profpic" alt="messenger_user_picture">
+                    <div><h2 class="user-name">{{user_name}}</h2></div>
+                    <h3>Select a page:</h3>
+                </div>
+
+                <div class="flex-container page-window">
+                    <div class="pages">
+
+                        <div id="login-form">
+                        {% if pages %}
+                            {%  for page in pages %}
+                                <div class="usr_page" id="{{ page.id }}">
+                                    <div><img src="{{ page.picture.data.url }}" class="usr_page_img" alt="messenger_page_picture"></div>
+                                    <div class="pg2">
+                                        <div><h3 class="pg_name">{{ page.name }}</h3></div>
+                                        <!--<div><input class="page_id" type="text" name="page" size="16" id="page" value="{{ page.id }}" readonly></div>-->
+                                    </div>
+
+                                </div>
+
+                            {% endfor %}
+                        {% else %}
+                            <h2>god help us</h2>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+
+
+
+</body>
+<script type="application/javascript" src="{% static 'js/pageselect.js' %}"></script>
+</html>

@@ -1,0 +1,37 @@
+you can use function log defined in logger.py for logging
+
+WARNING: !!! 'logs' folder empties on server startup, all files in this folder are deleted !!!
+
+log function has two parameters:
+    - 'message' that you want to log
+    - 'logger_sink' to which you want to log the message (if sink is not specified, message is being logged to a 'DEFAULT' sink)
+
+- you can crate your own sinks simply by adding new attributes to LoggerSink inside 'logger_sink.py'
+
+- use 'logger_settings.json' located inside 'logger' folder to specify log output
+- 'logger_settings.json' should be placed inside 'logs' folder
+- if 'logger_settings.json' does not exist, all sinks will be used
+- use "ALL" value if you want to include all sinks
+- IT IS RECOMMENDED TO SET 'SEPARATELY_LOGGED_SINKS' and 'LOG_FILE_SINKS' to "ALL" value
+
+WARNING: !!! in order to use specified settings, you have to define all keys in 'logger_settings.json' !!!
+logger_settings.json (EXAMPLE#1)
+{
+    "SEPARATELY_LOGGED_SINKS": "ALL",
+    "CONSOLE_SINKS": ["DEFAULT", "TWITTER"],
+    "LOG_FILE_SINKS": ["DEFAULT"]
+}
+
+logger_settings.json (EXAMPLE#2)
+{
+    "SEPARATELY_LOGGED_SINKS": "ALL",
+    "CONSOLE_SINKS": "ALL",
+    "LOG_FILE_SINKS": ["DEFAULT", "TWITTER"]
+}
+
+logger_settings.json (EXAMPLE#3)
+{
+    "SEPARATELY_LOGGED_SINKS": "",
+    "CONSOLE_SINKS": "ALL",
+    "LOG_FILE_SINKS": ""
+}

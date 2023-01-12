@@ -1,0 +1,10 @@
+django_site/omnichatterator/__pycache__/
+.idea
+django_site/omnichatterator/twitter_creds
+django_site/db.sqlite3
+django_site/home
+django_site/venv
+django_site/omnichatterator/logger/logger_settings.json
+django_site/omnichatterator/logger/logs
+django_site/omnichatterator/logger/__pycache__/
+django_site/unsecured-user-data/.credentials/

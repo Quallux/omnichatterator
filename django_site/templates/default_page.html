@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.png">
+    <link href="{% static 'css/default_page.css' %}" rel="stylesheet" type="text/css">
+    <title>Omnichatterator</title>
+    <script type="application/javascript" src="{% static 'js/modules/const.js' %}"></script>
+    <script type="application/javascript" src="{% static 'js/header.js' %}" defer></script>
+</head>
+
+<body>
+
+<div id="screen-cover-box" class="hidden">
+    <div class="screen-cover"></div>
+    <div id="logout-all-box" class="vertical-center yes-no-box hidden">
+        <div class="logout-text">Are you sure you want to log out from all platforms?</div>
+        <a id="logout-all" class="yes logout-link" href="/logout"><div class="vertical-center">YES</div></a>
+        <button class="no">NO</button>
+    </div>
+    <div id="twitter-logout-box" class="vertical-center yes-no-box hidden">
+        <div class="logout-text">Are you sure you want to log out from Twitter?</div>
+        <button id="twitter-logout" class="yes confirm-logout">YES</button>
+        <button class="no">NO</button>
+    </div>
+    <div id="messenger-logout-box" class="vertical-center yes-no-box hidden">
+        <div class="logout-text">Are you sure you want to log out from Messenger?</div>
+        <button id="messenger-logout" class="yes confirm-logout">YES</button>
+        <button class="no">NO</button>
+    </div>
+    <div id="gmail-logout-box" class="vertical-center yes-no-box hidden">
+        <div class="logout-text">Are you sure you want to log out from Gmail?</div>
+        <button id="gmail-logout" class="yes confirm-logout">YES</button>
+        <button class="no">NO</button>
+    </div>
+</div>
+
+<div class="flex-container page-window">
+    <div id="navigation">
+        <div id="image-container">
+            <img class="vertical-center" src="{% static 'images/logo.svg' %}" alt="Omnichatterator"/>
+        </div>
+
+        <div class="contacts hidden">
+            {% if contacts %}
+                {% for contact in contacts %}
+                    {% if forloop.first %}
+                        <div class="contact contact-selected flex-container">
+                            <div class="relative-position">
+                                <!-- add platform class as in cookies for sendMessage and ConvoHistory functionality-->
+                                {% if contact.platform == 'twitter' %}
+                                    <img class="contact-avatar twitter" src="{{ contact.profile_image_url_https }}">
+                                    <img class="platform-logo-contact twitter" src="{% static 'images/twitter.svg' %}">
+                                {% elif contact.platform == 'gmail' %}
+                                    <img class="contact-avatar gmail" src="{% static 'images/default_avatar.svg' %}">
+                                    <img class="platform-logo-contact gmail" src="{% static 'images/gmail.svg' %}">
+                                {% else %}
+                                    <img class="contact-avatar messenger" src="{{ contact.profile_image_url_https }}">
+                                    <img class="platform-logo-contact messenger" src="{% static 'images/messenger.svg' %}">
+                                {% endif %}
+                            </div>
+                            <div>
+                                <div class="contact-values vertical-center">
+                                    <div class="contact-name">{{ contact.name }}</div>
+                                    <div class="contact-message">{{ contact.lastMessage }}</div>
+                                    <div hidden class="contact-id">{{ contact.id }}</div>
+                                    <div hidden class="contact-timestamp">{{ contact.timeStamp }}</div>
+                                    <div hidden class="contact-platform">{{ contact.platform }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="contact contact-not-selected flex-container">
+                            <div class="relative-position">
+                                {% if contact.platform == "twitter" %}
+                                     <img class="contact-avatar" src="{{ contact.profile_image_url_https }}">
+                                    <img class="platform-logo-contact" src="{% static 'images/twitter.svg' %}">
+                                {% elif contact.platform == "gmail" %}
+                                     <img class="contact-avatar gmail" src="{% static 'images/default_avatar.svg' %}">
+                                    <img class="platform-logo-contact" src="{% static 'images/gmail.svg' %}">
+                                {% else %}
+                                     <img class="contact-avatar messenger" src="{{ contact.profile_image_url_https }}">
+                                    <img class="platform-logo-contact" src="{% static 'images/messenger.svg' %}">
+                                {% endif %}
+                            </div>
+                            <div>
+                                <div class="contact-values vertical-center">
+                                    <div class="contact-name">{{ contact.name }}</div>
+                                    <div class="contact-message">{{ contact.lastMessage }}</div>
+                                    <div hidden class="contact-id">{{ contact.id }}</div>
+                                    <div hidden class="contact-timestamp">{{ contact.timeStamp }}</div>
+                                    <div hidden class="contact-platform">{{ contact.platform }}</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% empty %}
+                    <div class="contact-name">An error has occured</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+    <div id="chat-window">
+        <div class="user-menu flex-container hidden">
+                {% if twitter_profile_pic %}
+                <div id="twitter-user" class="relative-position user flex-vertical-center hidden">
+                    <img id="twitter-user-image" class="user-profile-picture" src="{{ twitter_profile_pic }}">
+                    <img class="user-platform-logo" src="{% static 'images/twitter.svg' %}">
+                    <img id="twitter-logout-button" class="logout-platform hidden" src="{% static 'images/close-logout.svg' %}">
+                    <div class="bubble hidden"></div>
+                </div>
+                {% endif %}
+
+                {% if messenger_profile_pic %}
+                <div id="messenger-user" class="relative-position user flex-vertical-center hidden">
+                    <img id="messenger-user-image" class="user-profile-picture" src="{{ messenger_profile_pic }}">
+                    <img class="user-platform-logo" src="{% static 'images/messenger.svg' %}">
+                    <img id="messenger-logout-button" class="logout-platform hidden" src="{% static 'images/close-logout.svg' %}">
+                    <div class="bubble hidden"></div>
+                </div>
+                {% endif %}
+
+                {% if gmail_profile_pic %}
+                <div id="gmail-user" class="relative-position user flex-vertical-center hidden" >
+                    <img id="gmail-user-image" class="user-profile-picture" src="{% static 'images/default_avatar.svg' %}">
+                    <img class="user-platform-logo" src="{% static 'images/gmail.svg' %}">
+                    <img id="gmail-logout-button" class="logout-platform hidden" src="{% static 'images/close-logout.svg' %}">
+                    <div class="bubble hidden"></div>
+                </div>
+                {% endif %}
+
+            <div class="flex-vertical-center">
+                <a href="/login/">
+                    <img class="logout" src="{% static 'images/add-platform.svg' %}" title="Add new platform">
+                </a>
+            </div>
+            <div class="flex-vertical-center">
+                <img id="logout" class="logout" src="{% static 'images/logout.svg' %}" title="Logout">
+            </div>
+        </div>
+        <div id="chat-content" class="flex-container hidden">
+            {% if contacts %}
+                <div id="conversation-history" class="max-width flex-container">
+                <div class="conversation-message-container max-width flex-container">
+                    <img class="conversation-profile-photo profile-his" src="{% static 'images/gmail.py' %}">
+                    <div class="conversation-message his">afjodjadakladjda</div>
+                </div>
+                <div class="conversation-message-container max-width flex-container">
+                    <div class="conversation-message mine">fasjflksfskfjkjlaflkjafjlkaf</div>
+                    <img class="conversation-profile-photo profile-mine" src="{% static 'images/gmail.py' %}">
+                </div>
+                </div>
+                <form id="send-message" class="max-width" method="post">
+                    <div class="message-container">
+                        <input id="message" name="message" type="text" placeholder="Message...">
+                        <button id="send-message-button" type="button"><img id="send-image"
+                                                                            src="{% static 'images/send.svg' %}">
+                        </button>
+                    </div>
+                </form>
+            {% else %}
+                <div id="chat-name">Seems kinda lonely out here!</div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+<script type="application/javascript" src="{% static 'js/modules/IDB.js' %}"></script>
+<script type="application/javascript" src="{% static 'js/cookiesmananger.js' %}"></script>
+<script type="application/javascript" src="{% static 'js/newconvomessage.js' %}"></script>
+<script type="application/javascript" src="{% static 'js/receivemessage.js' %}"></script>
+<script type="application/javascript" src="{% static 'js/clickcontact.js' %}"></script>
+<script type="application/javascript" src="{% static 'js/sendmessage.js' %}"></script>
+<script type="application/javascript" src="{% static 'js/logout.js' %}"></script>
+
+</html>
